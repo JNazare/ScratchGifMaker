@@ -6,7 +6,26 @@ angular.module('app.controllers', ['ngCordova'])
 
     // capture callback
 	var captureSuccess = function(mediaFiles) {
-		console.log(mediaFiles[0].fullPath);
+		videoURI = mediaFiles[0].fullPath;
+		var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = videoURI.substr(videoURI.lastIndexOf('/')+1);
+        options.mimeType = "video/quicktime";
+        options.trustAllHosts = true;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(videoURI, encodeURI("http://18.85.25.156:5000/"), 
+	        // Succes
+	        function(succes){
+	            alert(succes.response);
+	            console.log(succes.response);
+	        }, 
+	        function(error){
+	            alert(error.target);
+	            console.log(error);
+	        }, 
+	        options
+	    );
 	};
 
 	// capture error callback

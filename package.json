@@ -19,7 +19,9 @@
     "org.apache.cordova.console",
     "com.ionic.keyboard",
     "org.apache.cordova.media-capture",
-    "com.photokandy.videothumbnail"
+    "com.photokandy.videothumbnail",
+    "org.apache.cordova.file",
+    "org.apache.cordova.file-transfer"
   ],
   "cordovaPlatforms": [
     "ios"
