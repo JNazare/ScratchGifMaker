@@ -24,17 +24,23 @@
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
   </head>
-  <body ng-app="app">
+
+    <body ng-app="app">
 
     <ion-pane ng-controller="VideoCtrl">
-      <ion-header-bar class="bar-positive">
-        <h1 class="title">Gif Creator</h1>
-      </ion-header-bar>
-      <ion-content class="has-header">
-        <button class="button button-block button-calm" ng-click='captureVideo()'>
-          Record
-        </button>
+      <ion-content class="has-header has-footer">
+        <div class="row">
+          <div class="col col-90 gif-holder">
+            <img ng-src="{{clip}}" width="100%">
+          </div>
+        </div>
       </ion-content>
+      <div class="bar bar-footer bar-dark">
+          <button class="button button-clear icon ion-ios-download-outline" ng-click="sendGif()"></button>
+          <button class="record_btn" ng-click='captureVideo()'>
+          </button>
+          <button class="button button-clear pull-right icon ion-ios-trash-outline" ng-click="deleteGif()"></button>
+      </div>
     </ion-pane>
   </body>
 </html>

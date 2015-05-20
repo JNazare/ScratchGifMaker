@@ -1,1 +1,44 @@
 /* Empty. Add your own CSS if you like */
+
+div.gif-holder{
+	margin-left: 5vw;
+	/*margin-top: 5vh;*/
+}
+
+div.record-holder{
+	margin-top: 10vh;
+}
+
+div.gif-container{
+	max-height: 35vh;
+}
+
+
+div.bar-footer{
+	min-height: 13vh;
+	/*padding-top: 15px;*/
+}
+
+button.record_btn{
+   background: url('../img/record_btn.png') no-repeat;
+   background-position: center top;
+   background-size: 100% auto;
+   width: 20%;
+   height: 18vh;
+   border: none;
+   margin-left: 32vw;
+}
+
+button.record_btn:active{
+   background:url('../img/record_btn_pressed.png') no-repeat;
+   background-position: center top;
+   background-size: 100% auto;
+   width: 20%;
+   height: 18vh;
+   border: none;
+   margin-left: 32vw;
+}
+
+/*button.button.icon{
+	margin-top: 3vh;
+}*/
