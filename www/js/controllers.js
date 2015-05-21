@@ -80,7 +80,7 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 		  emailPopup.then(function(res) {
 		  	var donePopup = $ionicPopup.alert({
 			     title: 'Sent!',
-			     template: 'Check your email :)'
+			     template: '<center>Check your email :)</center>'
 			   });
 		  	email_options = {
 			  		"key": "key",
@@ -115,7 +115,7 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 		else{
 			var alertPopup = $ionicPopup.alert({
 		     title: 'Oops!',
-		     template: 'Please create a video first.'
+		     template: '<center>Please create a video first.</center>'
 		   });
 		}
 	}
