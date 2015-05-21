@@ -83,7 +83,7 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 			     template: 'Check your email :)'
 			   });
 		  	email_options = {
-			  		"key": "0BUCvLCl5G8bxDUXW4vfUw",
+			  		"key": "key",
 	    			"message": {
 	      				"from_email": "juliana@media.mit.edu",
 		      			"to": [
