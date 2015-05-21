@@ -2,12 +2,13 @@ var app = angular.module('app.controllers', ['ngCordova'])
 
 var emailTemplate = '<html><head></head><body style="font-family: sans-serif;"><p>Attached is your GIF. There are a few more steps you need to import your GIF into Scratch.</p><ol><li> Download your GIF </li><li> Upload your GIF as a sprite in a Scratch Project </li></ol>Thanks!</body></html>';
 
-app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http) {
+app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http, $ionicLoading) {
     console.log("in ctrl");
     $scope.clip = 'img/blankgif_instructions.png';
 
     // capture callback
 	var captureSuccess = function(mediaFiles) {
+		setTimeout(function () {$scope.$apply(function () {$scope.loading = true;})}, 2000);
 		videoURI = mediaFiles[0].fullPath;
 		var options = new FileUploadOptions();
         options.fileKey = "file";
@@ -16,7 +17,7 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
         options.trustAllHosts = true;
         options.chunkedMode = false;
         var ft = new FileTransfer();
-        ft.upload(videoURI, encodeURI("http://18.85.25.156:5000/"), 
+        ft.upload(videoURI, encodeURI("http://10.0.1.5:5000/"), 
 	        // Succes
 	        function(succes){
 	        	// console.log("data:image/gif;base64,"+succes.response);
@@ -25,6 +26,7 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 			        $scope.$apply(function () {
 			        	$scope.base64_gif = succes.response;
 			            $scope.clip="data:image/gif;base64,"+$scope.base64_gif;
+			            $scope.loading = false;
 			        });
 			    }, 2000);
 	        }, 
@@ -38,7 +40,7 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 
 	// capture error callback
 	var captureError = function(error) {
-	    navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+		console.log("Error");
 	};
 
 	$scope.captureVideo = function() {
@@ -76,8 +78,12 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 		    ]
 		  });
 		  emailPopup.then(function(res) {
+		  	var donePopup = $ionicPopup.alert({
+			     title: 'Sent!',
+			     template: 'Check your email :)'
+			   });
 		  	email_options = {
-			  		"key": "my key",
+			  		"key": "0BUCvLCl5G8bxDUXW4vfUw",
 	    			"message": {
 	      				"from_email": "juliana@media.mit.edu",
 		      			"to": [
@@ -92,7 +98,7 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 		      			"images": [
 			            {
 			                "type": "image/gif",
-			                "name": "scratchgif",
+			                "name": "sprite.gif",
 			                "content": $scope.base64_gif
 			            }
 			        ]
@@ -100,13 +106,9 @@ app.controller('VideoCtrl', function($scope, $cordovaCapture, $ionicPopup, $http
 		  		}
 		    $http.post('https://mandrillapp.com/api/1.0/messages/send.json', email_options).success(function(data, status, headers, config) {
 			    console.log(data);
-			    // this callback will be called asynchronously
-			    // when the response is available
 			  }).
 			  error(function(data, status, headers, config) {
 			  	console.log("error");
-			    // called asynchronously if an error occurs
-			    // or server returns response with an error status.
 			  });
 		  });
 		}

@@ -5,6 +5,10 @@ div.gif-holder{
 	/*margin-top: 5vh;*/
 }
 
+img.gif-img{
+	border: 3px solid #cccccc;
+}
+
 div.record-holder{
 	margin-top: 10vh;
 }
@@ -39,6 +43,10 @@ button.record_btn:active{
    margin-left: 32vw;
 }
 
-/*button.button.icon{
-	margin-top: 3vh;
-}*/
+.spinner svg{
+	position: absolute;
+	top: 10vh;
+	left: 43vw;
+	width: 60px;
+  	height: 60px;
+}

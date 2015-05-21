@@ -31,7 +31,8 @@
       <ion-content class="has-header has-footer">
         <div class="row">
           <div class="col col-90 gif-holder">
-            <img ng-src="{{clip}}" width="100%">
+            <ion-spinner class="spinner" ng-if="loading"></ion-spinner>
+            <img class="gif-img" ng-src="{{clip}}" width="100%">
           </div>
         </div>
       </ion-content>
